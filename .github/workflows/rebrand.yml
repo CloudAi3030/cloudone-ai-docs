@@ -233,6 +233,12 @@ jobs:
           replace: "${{ inputs.primary_color }}"
           include: "**/*.json"
 
+      - name: Replace colors in mint.json explicitly
+        run: |
+          sed -i 's/#06df4b/${{ inputs.primary_color }}/g' mint.json
+          sed -i 's/#65fe50/${{ inputs.primary_color }}/g' mint.json
+          sed -i 's/#01df4a/${{ inputs.primary_color }}/g' mint.json
+
       # Step 4: Rename files with 'autocalls' in the name
       - name: Rename what-is-autocalls page
         run: |
