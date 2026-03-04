@@ -253,6 +253,11 @@ jobs:
           replace: "introduction/what-is-platform"
           include: "**/*.{json,mdx}"
 
+      - name: Update intro page references in mint.json and content explicitly
+        run: |
+          sed -i 's|introduction/what-is-autocalls|introduction/what-is-platform|g' mint.json
+          find . -type f -name "*.mdx" ! -path "./.git/*" -exec sed -i 's|introduction/what-is-autocalls|introduction/what-is-platform|g' {} \;
+
       - name: Rename autocalls-tool page
         run: |
           if [ -f "automation-platform/calls-related/autocalls-tool.mdx" ]; then
@@ -265,6 +270,11 @@ jobs:
           find: "automation-platform/calls-related/autocalls-tool"
           replace: "automation-platform/calls-related/platform-tool"
           include: "**/*.{json,mdx}"
+
+      - name: Update autocalls-tool references in mint.json and content explicitly
+        run: |
+          sed -i 's|automation-platform/calls-related/autocalls-tool|automation-platform/calls-related/platform-tool|g' mint.json
+          find . -type f -name "*.mdx" ! -path "./.git/*" -exec sed -i 's|automation-platform/calls-related/autocalls-tool|automation-platform/calls-related/platform-tool|g' {} \;
 
       # Step 5: Final comprehensive text replacements using sed
       - name: Final cleanup - replace remaining Autocalls text
